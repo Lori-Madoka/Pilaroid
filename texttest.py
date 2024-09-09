@@ -87,7 +87,7 @@ def take_picture():
     shutter_count += 1
     write_shutter_count(shutter_count_file, shutter_count)
     
-    output_filename = f'polaroid_{shutter_count:04d}.jpg'
+    output_filename = f'pilaroid_{shutter_count:04d}.jpg'
     command = [
         'libcamera-still',
         '-o', output_filename,
