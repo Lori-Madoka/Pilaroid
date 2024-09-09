@@ -3,7 +3,7 @@ A raspberry pi in a Polaroid - the Pilaroid
 
 ## Dependencies
 requires Luma (pip3 install luma)
-requires PIL (pip3 install PIL)
+requires PIL (pip3 install Pillow)
 requires RPi.GPIO (pip3 install RPi.GPIO)
 
 ## Functionality
