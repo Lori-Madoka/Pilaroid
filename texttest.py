@@ -183,7 +183,7 @@ def take_picture():
     shutter_count += 1
     write_shutter_count(shutter_count_file, shutter_count)
     
-    output_filename = f'/home/lori/testing/images/pilaroid_{shutter_count:04d}.jpg'
+    output_filename = f'pilaroid_{shutter_count:04d}.jpg'
     command = [
         'libcamera-still',
         '-o', output_filename,
@@ -204,8 +204,14 @@ def take_picture():
     display_text("Capture complete")
     time.sleep(0.2)
     display_text("Printing image...")
-    image_path = output_filename
-    printTime(image_path) 
+    
+    result = subprocess.run(["python3", "printertest.py"], capture_output=True, text=True)
+    # Print the output and error (if any)
+    print("Output:", result.stdout)
+    print("Error:", result.stderr)
+
+    display_text(result.stdout)
+    
     display_text("Print complete :)")
     time.sleep(0.2)
 
@@ -241,52 +247,53 @@ def monitor_button_press():
 
 def run_animation():
     try:
-        fpstime = 0.066
+        fpstime = 0.001
         while True:
-            display_text("|W<                 ") 
-    		sleep(fpstime)
-    		display_text(" >W<                ") 
-    		sleep(fpstime)
-    		display_text("  OWO               ")
-    		sleep(fpstime)
-    		display_text("    OWO             ")
-    		sleep(fpstime)
-    		display_text("      OWO           ")
-    		sleep(fpstime)
-    		display_text("         OWO        ")
-    		sleep(fpstime)
-    		display_text("           OWO      ")
-    		sleep(fpstime)
-    		display_text("               OWO  ")
-    		sleep(fpstime)
-    		display_text("                 OW|") 
-    		sleep(fpstime)
-    		display_text("                 >W|") 
-    		sleep(fpstime)
-    		display_text("                 >W|") 
-    		sleep(fpstime)
-    		display_text("                 OW|") 
-    		sleep(fpstime)
-    		display_text("                OWO ")
-    		sleep(fpstime)
-    		display_text("               OWO  ")
-    		sleep(fpstime)
-    		display_text("             OWO    ")
-    		sleep(fpstime)
-    		display_text("          OWO       ")
-    		sleep(fpstime)
-    		display_text("       OWO          ")
-    		sleep(fpstime)
-    		display_text("   OWO              ")
-    		sleep(fpstime)
-    		display_text("|WO                 ")
-    		sleep(fpstime)
-    		display_text("|W<                 ") 
-    		sleep(fpstime)
+            display_text("|W<                         ") 
+            time.sleep(fpstime)
+            display_text("|WO                         ") 
+            time.sleep(fpstime)
+            display_text(" OWO                        ")
+            time.sleep(fpstime)
+            display_text("   OWO                      ")
+            time.sleep(fpstime)
+            display_text("       OWO                  ")
+            time.sleep(fpstime)
+            display_text("           OWO              ")
+            time.sleep(fpstime)
+            display_text("                OWO         ")
+            time.sleep(fpstime)
+            display_text("                     OWO    ")
+            time.sleep(fpstime)
+            display_text("                         OW|") 
+            time.sleep(fpstime)
+            display_text("                         >W|") 
+            time.sleep(fpstime)
+            display_text("                         >W|") 
+            time.sleep(fpstime)
+            display_text("                         OW|") 
+            time.sleep(fpstime)
+            display_text("                        OWO ")
+            time.sleep(fpstime)
+            display_text("                      OWO   ")
+            time.sleep(fpstime)
+            display_text("                  OWO       ")
+            time.sleep(fpstime)
+            display_text("             OWO            ")
+            time.sleep(fpstime)
+            display_text("        OWO                 ")
+            time.sleep(fpstime)
+            display_text("   OWO                      ")
+            time.sleep(fpstime)
+            display_text("|WO                         ")
+            time.sleep(fpstime)
+            display_text("|W<                         ") 
+            time.sleep(fpstime)
     except KeyboardInterrupt:
         GPIO.cleanup()
     finally:
         GPIO.cleanup()
+
                         
 # Start monitoring the button press and running the animation concurrently
 button_thread = threading.Thread(target=monitor_button_press)
