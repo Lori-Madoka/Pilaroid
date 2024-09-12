@@ -128,7 +128,7 @@ def take_picture():
     time.sleep(0.2)
     display_text("Printing image...")
     
-    result = subprocess.run(["python3", "printertest.py"], capture_output=True, text=True)
+    result = subprocess.run(["python3", "print.py"], capture_output=True, text=True)
     # Print the output and error (if any)
     print("Output:", result.stdout)
     print("Error:", result.stderr)
